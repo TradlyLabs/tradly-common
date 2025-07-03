@@ -25,7 +25,9 @@ type srvRedisDB struct {
 var defaultSrvRedisDB SrvRedisDB
 
 func init() {
-	defaultSrvRedisDB = &srvRedisDB{}
+	defaultSrvRedisDB = &srvRedisDB{
+		clients: make(map[string]*redis.Client),
+	}
 	runtime.Register("SrvRedisDB", defaultSrvRedisDB)
 }
 
@@ -75,7 +77,7 @@ func (s *srvRedisDB) Start(ctx context.Context) error {
 		s.clients[key] = client
 		s.list = append(s.list, client)
 	}
-	if !hasDefault && len(s.clients) > 0 {
+	if !hasDefault && len(s.list) > 0 {
 		s.clients[DEFAULT_NAME] = s.list[0]
 	}
 	return nil

@@ -7,6 +7,7 @@ import (
 	"github.com/TemoreIO/temore-common/pkg/runtime"
 	"github.com/dapr/go-sdk/service/common"
 	daprd "github.com/dapr/go-sdk/service/http"
+	"go.uber.org/zap"
 )
 
 var DefaultDaprSrv *SrvDapr
@@ -23,14 +24,20 @@ type SrvDapr struct {
 func NewSrvDapr() *SrvDapr {
 	appPort := os.Getenv("APP_PORT")
 	if appPort == "" {
-		appPort = "6005"
+		appPort = "3000"
 	}
 	s := daprd.NewService(":" + appPort)
 	return &SrvDapr{s}
 }
 
 func (s *SrvDapr) Start(ctx context.Context) error {
-	return s.s.Start()
+	go func() {
+		err := s.s.Start()
+		if err != nil {
+			zap.L().Error("dapr srv start error", zap.Error(err))
+		}
+	}()
+	return nil
 }
 
 func (s *SrvDapr) Stop(ctx context.Context) error {

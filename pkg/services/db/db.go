@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"errors"
 	"log"
 	"os"
 	"regexp"
@@ -54,6 +55,9 @@ type SrvDB struct {
 
 func (s *SrvDB) Start(context.Context) error {
 	conf := config.C()
+	if conf.Postgres == nil {
+		return errors.New("no postgres config")
+	}
 
 	hasDefault := false
 	for key, c := range conf.Postgres {
