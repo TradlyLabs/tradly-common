@@ -10,5 +10,5 @@ const (
 
 type ThirdPriceEvent struct {
 	Type        ThirdPriceEventType `json:"type"`
-	PriceFeeIds map[string]string   `json:"priceFeeIds"` // key: symbol value: pyth price fee id
+	PriceFeeIds map[string]string   `json:"priceFeeIds"` // key: pyth price fee id value: symbol
 }
