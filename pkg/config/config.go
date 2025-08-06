@@ -16,8 +16,13 @@ type RedisConfig struct {
 
 // EvmConfig stores EVM connection information
 type EvmConfig struct {
-	ChainID int64    `yaml:"chainId"`
-	RPCs    []string `yaml:"rpc"`
+	ChainID int64          `yaml:"chainId"`
+	RPCs    []EvmConfigRPC `yaml:"rpc"`
+}
+
+type EvmConfigRPC struct {
+	URL            string `yaml:"url"`
+	LimitPerSecond int    `yaml:"limitPerSecond"`
 }
 
 // C returns current configuration

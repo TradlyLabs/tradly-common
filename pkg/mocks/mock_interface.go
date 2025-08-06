@@ -9,7 +9,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	v9 "github.com/redis/go-redis/v9"
+	redis "github.com/redis/go-redis/v9"
 )
 
 // MockRedisClient is a mock of RedisClient interface.
@@ -35,25 +35,48 @@ func (m *MockRedisClient) EXPECT() *MockRedisClientMockRecorder {
 	return m.recorder
 }
 
-// XAdd mocks base method.
-func (m *MockRedisClient) XAdd(ctx context.Context, a *v9.XAddArgs) *v9.StringCmd {
+// HGet mocks base method.
+func (m *MockRedisClient) HGet(ctx context.Context, key, field string) *redis.StringCmd {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "XAdd", ctx, a)
-	ret0, _ := ret[0].(*v9.StringCmd)
+	ret := m.ctrl.Call(m, "HGet", ctx, key, field)
+	ret0, _ := ret[0].(*redis.StringCmd)
 	return ret0
 }
 
-// XAdd indicates an expected call of XAdd.
-func (mr *MockRedisClientMockRecorder) XAdd(ctx, a interface{}) *gomock.Call {
+// HGet indicates an expected call of HGet.
+func (mr *MockRedisClientMockRecorder) HGet(ctx, key, field interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XAdd", reflect.TypeOf((*MockRedisClient)(nil).XAdd), ctx, a)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HGet", reflect.TypeOf((*MockRedisClient)(nil).HGet), ctx, key, field)
+}
+
+// HSet mocks base method.
+func (m *MockRedisClient) HSet(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, key}
+	for _, a := range values {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "HSet", varargs...)
+	ret0, _ := ret[0].(*redis.IntCmd)
+	return ret0
+}
+
+// HSet indicates an expected call of HSet.
+func (mr *MockRedisClientMockRecorder) HSet(ctx, key interface{}, values ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, key}, values...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HSet", reflect.TypeOf((*MockRedisClient)(nil).HSet), varargs...)
 }
 
 // PSubscribe mocks base method.
-func (m *MockRedisClient) PSubscribe(ctx context.Context, channels ...string) *v9.PubSub {
+func (m *MockRedisClient) PSubscribe(ctx context.Context, channels ...string) *redis.PubSub {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "PSubscribe", ctx, channels)
-	ret0, _ := ret[0].(*v9.PubSub)
+	varargs := []interface{}{ctx}
+	for _, a := range channels {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "PSubscribe", varargs...)
+	ret0, _ := ret[0].(*redis.PubSub)
 	return ret0
 }
 
@@ -64,11 +87,25 @@ func (mr *MockRedisClientMockRecorder) PSubscribe(ctx interface{}, channels ...i
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PSubscribe", reflect.TypeOf((*MockRedisClient)(nil).PSubscribe), varargs...)
 }
 
+// Publish mocks base method.
+func (m *MockRedisClient) Publish(ctx context.Context, channel string, message interface{}) *redis.IntCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Publish", ctx, channel, message)
+	ret0, _ := ret[0].(*redis.IntCmd)
+	return ret0
+}
+
+// Publish indicates an expected call of Publish.
+func (mr *MockRedisClientMockRecorder) Publish(ctx, channel, message interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Publish", reflect.TypeOf((*MockRedisClient)(nil).Publish), ctx, channel, message)
+}
+
 // SPublish mocks base method.
-func (m *MockRedisClient) SPublish(ctx context.Context, channel string, message interface{}) *v9.IntCmd {
+func (m *MockRedisClient) SPublish(ctx context.Context, channel string, message interface{}) *redis.IntCmd {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SPublish", ctx, channel, message)
-	ret0, _ := ret[0].(*v9.IntCmd)
+	ret0, _ := ret[0].(*redis.IntCmd)
 	return ret0
 }
 
@@ -79,10 +116,14 @@ func (mr *MockRedisClientMockRecorder) SPublish(ctx, channel, message interface{
 }
 
 // SSubscribe mocks base method.
-func (m *MockRedisClient) SSubscribe(ctx context.Context, channels ...string) *v9.PubSub {
+func (m *MockRedisClient) SSubscribe(ctx context.Context, channels ...string) *redis.PubSub {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SSubscribe", ctx, channels)
-	ret0, _ := ret[0].(*v9.PubSub)
+	varargs := []interface{}{ctx}
+	for _, a := range channels {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "SSubscribe", varargs...)
+	ret0, _ := ret[0].(*redis.PubSub)
 	return ret0
 }
 
@@ -94,10 +135,14 @@ func (mr *MockRedisClientMockRecorder) SSubscribe(ctx interface{}, channels ...i
 }
 
 // Subscribe mocks base method.
-func (m *MockRedisClient) Subscribe(ctx context.Context, channels ...string) *v9.PubSub {
+func (m *MockRedisClient) Subscribe(ctx context.Context, channels ...string) *redis.PubSub {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Subscribe", ctx, channels)
-	ret0, _ := ret[0].(*v9.PubSub)
+	varargs := []interface{}{ctx}
+	for _, a := range channels {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Subscribe", varargs...)
+	ret0, _ := ret[0].(*redis.PubSub)
 	return ret0
 }
 
@@ -108,16 +153,16 @@ func (mr *MockRedisClientMockRecorder) Subscribe(ctx interface{}, channels ...in
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Subscribe", reflect.TypeOf((*MockRedisClient)(nil).Subscribe), varargs...)
 }
 
-// Publish mocks base method.
-func (m *MockRedisClient) Publish(ctx context.Context, channel string, message interface{}) *v9.IntCmd {
+// XAdd mocks base method.
+func (m *MockRedisClient) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Publish", ctx, channel, message)
-	ret0, _ := ret[0].(*v9.IntCmd)
+	ret := m.ctrl.Call(m, "XAdd", ctx, a)
+	ret0, _ := ret[0].(*redis.StringCmd)
 	return ret0
 }
 
-// Publish indicates an expected call of Publish.
-func (mr *MockRedisClientMockRecorder) Publish(ctx, channel, message interface{}) *gomock.Call {
+// XAdd indicates an expected call of XAdd.
+func (mr *MockRedisClientMockRecorder) XAdd(ctx, a interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Publish", reflect.TypeOf((*MockRedisClient)(nil).Publish), ctx, channel, message)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XAdd", reflect.TypeOf((*MockRedisClient)(nil).XAdd), ctx, a)
 }

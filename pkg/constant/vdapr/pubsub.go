@@ -13,4 +13,9 @@ var (
 		Topic:      "price-feeds",
 		Route:      "/price-feeds",
 	}
+	SUB_BOT = &common.Subscription{
+		PubsubName: "management",
+		Topic:      "bot",
+		Route:      "/bot",
+	}
 )
