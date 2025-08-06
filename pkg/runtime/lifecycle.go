@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/TemoreIO/temore-common/pkg/runtime/service"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime/service"
 )
 
 var DefaultManager *Manager

@@ -3,7 +3,7 @@ package mocks
 import (
 	"context"
 
-	"github.com/TemoreIO/temore-common/pkg/services/redisdb"
+	"github.com/TradlyLabs/tradly-common/pkg/services/redisdb"
 )
 
 var defaultSrvRedisDB *MockSrvRedisDB

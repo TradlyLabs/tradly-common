@@ -1,6 +1,6 @@
 package spubsub
 
-import "github.com/TemoreIO/temore-common/pkg/models/chain_data"
+import "github.com/TradlyLabs/tradly-common/pkg/models/chain_data"
 
 type UniswapV2PairEventType int
 

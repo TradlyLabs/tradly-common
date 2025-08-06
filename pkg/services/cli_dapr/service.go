@@ -3,7 +3,7 @@ package cli_dapr
 import (
 	"context"
 
-	"github.com/TemoreIO/temore-common/pkg/runtime"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
 	dapr "github.com/dapr/go-sdk/client"
 )
 

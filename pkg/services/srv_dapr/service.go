@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/TemoreIO/temore-common/pkg/runtime"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
 	"github.com/dapr/go-sdk/service/common"
 	daprd "github.com/dapr/go-sdk/service/http"
 	"go.uber.org/zap"

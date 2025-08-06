@@ -8,8 +8,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TemoreIO/temore-common/pkg/services/db"
-	"github.com/TemoreIO/temore-management/internal/models"
+	"github.com/TradlyLabs/tradly-common/pkg/services/db"
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
@@ -46,7 +45,7 @@ func (m *Manager) CreateWallet(ctx context.Context, password string) (*accounts.
 	}
 
 	// Save to database
-	wallet := &models.Wallet{
+	wallet := &Wallet{
 		ID:        uuid.New().String(),
 		Address:   account.Address.Hex(),
 		Keystore:  string(keyJSON),
@@ -76,7 +75,7 @@ func (m *Manager) ImportWallet(ctx context.Context, privKey *ecdsa.PrivateKey, p
 	}
 
 	// Save to database
-	wallet := &models.Wallet{
+	wallet := &Wallet{
 		ID:        uuid.New().String(),
 		Address:   account.Address.Hex(),
 		Keystore:  string(keyJSON),
@@ -92,8 +91,8 @@ func (m *Manager) ImportWallet(ctx context.Context, privKey *ecdsa.PrivateKey, p
 }
 
 // GetWallet retrieves a wallet by address
-func (m *Manager) GetWallet(ctx context.Context, address string) (*models.Wallet, error) {
-	var wallet models.Wallet
+func (m *Manager) GetWallet(ctx context.Context, address string) (*Wallet, error) {
+	var wallet Wallet
 	if err := m.db.WithContext(ctx).Where("address = ?", address).First(&wallet).Error; err != nil {
 		return nil, fmt.Errorf("failed to get wallet: %w", err)
 	}
@@ -101,8 +100,8 @@ func (m *Manager) GetWallet(ctx context.Context, address string) (*models.Wallet
 }
 
 // ListWallets lists all wallets
-func (m *Manager) ListWallets(ctx context.Context) ([]*models.Wallet, error) {
-	var wallets []*models.Wallet
+func (m *Manager) ListWallets(ctx context.Context) ([]*Wallet, error) {
+	var wallets []*Wallet
 	if err := m.db.WithContext(ctx).Find(&wallets).Error; err != nil {
 		return nil, fmt.Errorf("failed to list wallets: %w", err)
 	}
@@ -129,7 +128,7 @@ func (m *Manager) DeleteWallet(ctx context.Context, address string) error {
 	}
 
 	// Delete from database
-	if err := m.db.WithContext(ctx).Delete(&models.Wallet{}, "id = ?", wallet.ID).Error; err != nil {
+	if err := m.db.WithContext(ctx).Delete(&Wallet{}, "id = ?", wallet.ID).Error; err != nil {
 		return fmt.Errorf("failed to delete wallet from database: %w", err)
 	}
 
@@ -163,7 +162,7 @@ func (m *Manager) UnlockWallet(ctx context.Context, address, password string, du
 
 	// Save unlock session to database if duration > 0
 	if duration > 0 {
-		unlock := &models.WalletUnlock{
+		unlock := &WalletUnlock{
 			ID:        uuid.New().String(),
 			WalletID:  wallet.ID,
 			ExpiresAt: time.Now().Add(duration),
@@ -189,7 +188,7 @@ func (m *Manager) LockWallet(ctx context.Context, address string) error {
 
 	// Remove unlock sessions from database
 	if err := m.db.WithContext(ctx).Where("wallet_id = (SELECT id FROM wallets WHERE address = ?)", address).
-		Delete(&models.WalletUnlock{}).Error; err != nil {
+		Delete(&WalletUnlock{}).Error; err != nil {
 		return fmt.Errorf("failed to remove unlock sessions: %w", err)
 	}
 
@@ -241,7 +240,7 @@ func (m *Manager) GetAddresses(ctx context.Context) ([]common.Address, error) {
 // IsUnlocked checks if a wallet is currently unlocked
 func (m *Manager) IsUnlocked(ctx context.Context, address string) bool {
 	addr := common.HexToAddress(address)
-	
+
 	// Try to find the account in keystore
 	account, err := m.ks.Find(accounts.Account{Address: addr})
 	if err != nil {

@@ -3,7 +3,7 @@ package pricev1
 import (
 	"context"
 
-	"github.com/TemoreIO/temore-common/pkg/services/db"
+	"github.com/TradlyLabs/tradly-common/pkg/services/db"
 )
 
 type PriceFee struct {

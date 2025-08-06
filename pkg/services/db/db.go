@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/TemoreIO/temore-common/pkg/config"
-	"github.com/TemoreIO/temore-common/pkg/runtime"
+	"github.com/TradlyLabs/tradly-common/pkg/config"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

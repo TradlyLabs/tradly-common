@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/TemoreIO/temore-common/pkg/runtime"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
 	"gopkg.in/yaml.v3"
 )
 

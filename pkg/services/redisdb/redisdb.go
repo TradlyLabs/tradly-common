@@ -3,9 +3,9 @@ package redisdb
 import (
 	"context"
 
-	"github.com/TemoreIO/temore-common/pkg/config"
-	"github.com/TemoreIO/temore-common/pkg/runtime"
-	"github.com/TemoreIO/temore-common/pkg/runtime/service"
+	"github.com/TradlyLabs/tradly-common/pkg/config"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
+	"github.com/TradlyLabs/tradly-common/pkg/runtime/service"
 	redis "github.com/redis/go-redis/v9"
 )
 

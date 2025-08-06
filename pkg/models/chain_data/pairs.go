@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/TemoreIO/temore-common/pkg/services/db"
+	"github.com/TradlyLabs/tradly-common/pkg/services/db"
 )
 
 // Pair represents the chain_data.pairs table structure
