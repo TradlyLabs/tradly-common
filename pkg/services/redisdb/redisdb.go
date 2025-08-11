@@ -35,13 +35,13 @@ func SetDefaultSrvRedisDB(s SrvRedisDB) {
 	defaultSrvRedisDB = s
 }
 
-func Get(args ...interface{}) Client {
+func Get(args ...interface{}) *redis.Client {
 	if len(args) > 0 {
 		switch v := args[0].(type) {
 		case string:
 			client, ok := defaultSrvRedisDB.GetClient(v)
 			if ok {
-				return client
+				return client.(*redis.Client)
 			}
 			panic("database " + v + " is not configed")
 		default:
@@ -50,7 +50,7 @@ func Get(args ...interface{}) Client {
 	}
 	db, ok := defaultSrvRedisDB.GetClient(DEFAULT_NAME)
 	if ok {
-		return db
+		return db.(*redis.Client)
 	}
 	panic("no database")
 }

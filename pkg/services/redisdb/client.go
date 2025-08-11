@@ -15,4 +15,8 @@ type Client interface {
 	Subscribe(ctx context.Context, channels ...string) *redis.PubSub
 	PSubscribe(ctx context.Context, channels ...string) *redis.PubSub
 	SSubscribe(ctx context.Context, channels ...string) *redis.PubSub
+	XRead(ctx context.Context, a *redis.XReadArgs) *redis.XStreamSliceCmd
+	XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd
+	XGroupCreateMkStream(ctx context.Context, stream, group, start string) *redis.StatusCmd
+	XAck(ctx context.Context, stream, group string, ids ...string) *redis.IntCmd
 }
