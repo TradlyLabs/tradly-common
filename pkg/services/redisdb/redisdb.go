@@ -35,7 +35,7 @@ func SetDefaultSrvRedisDB(s SrvRedisDB) {
 	defaultSrvRedisDB = s
 }
 
-func Get(args ...interface{}) *redis.Client {
+func Get(args ...interface{}) Client {
 	if len(args) > 0 {
 		switch v := args[0].(type) {
 		case string:

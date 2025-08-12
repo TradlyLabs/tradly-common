@@ -153,6 +153,25 @@ func (mr *MockRedisClientMockRecorder) Subscribe(ctx interface{}, channels ...in
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Subscribe", reflect.TypeOf((*MockRedisClient)(nil).Subscribe), varargs...)
 }
 
+// XAck mocks base method.
+func (m *MockRedisClient) XAck(ctx context.Context, stream, group string, ids ...string) *redis.IntCmd {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, stream, group}
+	for _, a := range ids {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "XAck", varargs...)
+	ret0, _ := ret[0].(*redis.IntCmd)
+	return ret0
+}
+
+// XAck indicates an expected call of XAck.
+func (mr *MockRedisClientMockRecorder) XAck(ctx, stream, group interface{}, ids ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, stream, group}, ids...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XAck", reflect.TypeOf((*MockRedisClient)(nil).XAck), varargs...)
+}
+
 // XAdd mocks base method.
 func (m *MockRedisClient) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd {
 	m.ctrl.T.Helper()
@@ -165,4 +184,46 @@ func (m *MockRedisClient) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.St
 func (mr *MockRedisClientMockRecorder) XAdd(ctx, a interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XAdd", reflect.TypeOf((*MockRedisClient)(nil).XAdd), ctx, a)
+}
+
+// XGroupCreateMkStream mocks base method.
+func (m *MockRedisClient) XGroupCreateMkStream(ctx context.Context, stream, group, start string) *redis.StatusCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "XGroupCreateMkStream", ctx, stream, group, start)
+	ret0, _ := ret[0].(*redis.StatusCmd)
+	return ret0
+}
+
+// XGroupCreateMkStream indicates an expected call of XGroupCreateMkStream.
+func (mr *MockRedisClientMockRecorder) XGroupCreateMkStream(ctx, stream, group, start interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XGroupCreateMkStream", reflect.TypeOf((*MockRedisClient)(nil).XGroupCreateMkStream), ctx, stream, group, start)
+}
+
+// XRead mocks base method.
+func (m *MockRedisClient) XRead(ctx context.Context, a *redis.XReadArgs) *redis.XStreamSliceCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "XRead", ctx, a)
+	ret0, _ := ret[0].(*redis.XStreamSliceCmd)
+	return ret0
+}
+
+// XRead indicates an expected call of XRead.
+func (mr *MockRedisClientMockRecorder) XRead(ctx, a interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XRead", reflect.TypeOf((*MockRedisClient)(nil).XRead), ctx, a)
+}
+
+// XReadGroup mocks base method.
+func (m *MockRedisClient) XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "XReadGroup", ctx, a)
+	ret0, _ := ret[0].(*redis.XStreamSliceCmd)
+	return ret0
+}
+
+// XReadGroup indicates an expected call of XReadGroup.
+func (mr *MockRedisClientMockRecorder) XReadGroup(ctx, a interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XReadGroup", reflect.TypeOf((*MockRedisClient)(nil).XReadGroup), ctx, a)
 }

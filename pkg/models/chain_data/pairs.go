@@ -21,6 +21,8 @@ type Pair struct {
 	UpdatedAt        time.Time  `json:"updatedAt" gorm:"column:updated_at;not null;default:now()"`
 	IndexingFrom     *time.Time `json:"indexingFrom" gorm:"column:indexing_from"`
 	BaseTokenAddress string     `json:"baseTokenAddress" gorm:"column:base_token_address;type:char(42);not null"`
+	Token0ID         string     `json:"token0ID" gorm:"column:token0_id;type:char(64);not null"`
+	Token1ID         string     `json:"token1ID" gorm:"column:token1_id;type:char(64);not null"`
 	Token0Address    string     `json:"token0Address" gorm:"column:token0_address;type:char(42);not null"`
 	Token1Address    string     `json:"token1Address" gorm:"column:token1_address;type:char(42);not null"`
 	Token0Symbol     string     `json:"token0Symbol" gorm:"column:token0_symbol;type:varchar(10);not null;default:''"`
