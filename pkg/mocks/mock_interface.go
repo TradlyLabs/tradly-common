@@ -7,6 +7,7 @@ package mocks
 import (
 	context "context"
 	reflect "reflect"
+	time "time"
 
 	gomock "github.com/golang/mock/gomock"
 	redis "github.com/redis/go-redis/v9"
@@ -33,6 +34,25 @@ func NewMockRedisClient(ctrl *gomock.Controller) *MockRedisClient {
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockRedisClient) EXPECT() *MockRedisClientMockRecorder {
 	return m.recorder
+}
+
+// Del mocks base method.
+func (m *MockRedisClient) Del(ctx context.Context, keys ...string) *redis.IntCmd {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx}
+	for _, a := range keys {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Del", varargs...)
+	ret0, _ := ret[0].(*redis.IntCmd)
+	return ret0
+}
+
+// Del indicates an expected call of Del.
+func (mr *MockRedisClientMockRecorder) Del(ctx interface{}, keys ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx}, keys...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Del", reflect.TypeOf((*MockRedisClient)(nil).Del), varargs...)
 }
 
 // HGet mocks base method.
@@ -132,6 +152,20 @@ func (mr *MockRedisClientMockRecorder) SSubscribe(ctx interface{}, channels ...i
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx}, channels...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SSubscribe", reflect.TypeOf((*MockRedisClient)(nil).SSubscribe), varargs...)
+}
+
+// SetNX mocks base method.
+func (m *MockRedisClient) SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SetNX", ctx, key, value, expiration)
+	ret0, _ := ret[0].(*redis.BoolCmd)
+	return ret0
+}
+
+// SetNX indicates an expected call of SetNX.
+func (mr *MockRedisClientMockRecorder) SetNX(ctx, key, value, expiration interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetNX", reflect.TypeOf((*MockRedisClient)(nil).SetNX), ctx, key, value, expiration)
 }
 
 // Subscribe mocks base method.

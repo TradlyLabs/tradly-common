@@ -2,6 +2,7 @@ package redisdb
 
 import (
 	"context"
+	"time"
 
 	redis "github.com/redis/go-redis/v9"
 )
@@ -19,4 +20,6 @@ type Client interface {
 	XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd
 	XGroupCreateMkStream(ctx context.Context, stream, group, start string) *redis.StatusCmd
 	XAck(ctx context.Context, stream, group string, ids ...string) *redis.IntCmd
+	SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd
+	Del(ctx context.Context, keys ...string) *redis.IntCmd
 }
