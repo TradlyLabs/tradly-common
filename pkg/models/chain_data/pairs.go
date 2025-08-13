@@ -31,7 +31,10 @@ type Pair struct {
 	Token1URL        string     `json:"token1URL" gorm:"column:token1_url;type:text;not null;default:''"`
 	Token0Name       string     `json:"token0Name" gorm:"column:token0_name;type:text;not null;default:''"`
 	Token1Name       string     `json:"token1Name" gorm:"column:token1_name;type:text;not null;default:''"`
-	Disabled         bool       `json:"disabled" gorm:"column:disabled;not null;default:false"`
+	Token0Decimals   int32      `json:"token0Decimals" gorm:"column:token0_decimals;not null"`
+	Token1Decimals   int32      `json:"token1Decimals" gorm:"column:token1_decimals;not null"`
+
+	Disabled bool `json:"disabled" gorm:"column:disabled;not null;default:false"`
 }
 
 // TableName sets the table name for the Pair struct

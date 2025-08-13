@@ -12,6 +12,7 @@ type Token struct {
 	Name       string          `gorm:"column:name;type:varchar(50);not null"`
 	Symbol     string          `gorm:"column:symbol;type:varchar(10);not null"`
 	Address    string          `gorm:"column:address;type:char(42);not null"`
+	Decimals   int32           `gorm:"column:decimals;not null"`
 	ChainID    int64           `gorm:"column:chain_id;not null"`
 	CurrentUSD decimal.Decimal `gorm:"column:current_usd;type:numeric(38,18);not null"`
 	UpdatedAt  time.Time       `gorm:"column:updated_at;not null;default:now()"`
