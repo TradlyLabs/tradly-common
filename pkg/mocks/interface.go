@@ -22,4 +22,5 @@ type RedisClient interface {
 	XAck(ctx context.Context, stream, group string, ids ...string) *redis.IntCmd
 	SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd
 	Del(ctx context.Context, keys ...string) *redis.IntCmd
+	Eval(ctx context.Context, script string, keys []string, args ...interface{}) *redis.Cmd
 }

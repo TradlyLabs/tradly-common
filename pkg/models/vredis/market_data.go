@@ -1,14 +1,23 @@
 package vredis
 
-import "github.com/shopspring/decimal"
+import (
+	"encoding/json"
 
-var (
-	CHANNEL_MARKET_PAIR_PRICE = "market_pair_price"
+	"github.com/shopspring/decimal"
 )
 
-// MarketPairPrice represents market data from Redis Pub/Sub
-type MarketPairPrice struct {
-	ID        string          `json:"id"`    // <pairID>(pair_<chainId>:<pairAddress>)
-	Price     decimal.Decimal `json:"price"` // quoteToken token1 ETH in 3000 buy, 3100 sell  <-> baseToken token0 tokenIn BTC out 110000
-	Timestamp int64           `json:"timestamp"`
+var (
+	CHANNEL_TOKEN_USD_PRICES = "token_usd_prices_channel"
+)
+
+// TokenUSDPrice represents market data from Redis Pub/Sub
+type TokenUSDPrice struct {
+	TokenID         string          `json:"tokenId"`
+	ChainID         json.Number     `json:"chainId"`
+	TokenAddress    string          `json:"tokenAddress"`
+	PairAddress     string          `json:"pairAddress"`
+	USDPrice        decimal.Decimal `json:"usdPrice"`
+	BlockTimestamp  int64           `json:"blockTimestamp"`
+	TransactionHash string          `json:"transactionHash"`
+	LogIndex        int64           `json:"logIndex"`
 }

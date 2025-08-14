@@ -55,6 +55,25 @@ func (mr *MockRedisClientMockRecorder) Del(ctx interface{}, keys ...interface{})
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Del", reflect.TypeOf((*MockRedisClient)(nil).Del), varargs...)
 }
 
+// Eval mocks base method.
+func (m *MockRedisClient) Eval(ctx context.Context, script string, keys []string, args ...interface{}) *redis.Cmd {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, script, keys}
+	for _, a := range args {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Eval", varargs...)
+	ret0, _ := ret[0].(*redis.Cmd)
+	return ret0
+}
+
+// Eval indicates an expected call of Eval.
+func (mr *MockRedisClientMockRecorder) Eval(ctx, script, keys interface{}, args ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, script, keys}, args...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Eval", reflect.TypeOf((*MockRedisClient)(nil).Eval), varargs...)
+}
+
 // HGet mocks base method.
 func (m *MockRedisClient) HGet(ctx context.Context, key, field string) *redis.StringCmd {
 	m.ctrl.T.Helper()
