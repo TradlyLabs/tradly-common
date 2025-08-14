@@ -39,16 +39,16 @@ func (r *Pair) Marshal() ([]byte, error) {
 // A geographical coordinate
 type Pair struct {
 	// Pair address
-	Address          string           `json:"address"`
-	Base             *Base            `json:"base,omitempty"`
-	BaseTokenAddress BaseTokenAddress `json:"baseTokenAddress"`
-	Block            *Block           `json:"block,omitempty"`
+	Address   string    `json:"address"`
+	Base      *Base     `json:"base,omitempty"`
+	BaseToken BaseToken `json:"baseToken"`
+	Block     *Block    `json:"block,omitempty"`
 	// pair_<chainId>:<pairAddress>
 	ID string `json:"id"`
 	// token0 is the base token
-	IsBaseToken       bool              `json:"isBaseToken"`
-	QuoteTokenAddress QuoteTokenAddress `json:"quoteTokenAddress"`
-	V2                *V2               `json:"v2,omitempty"`
+	IsBaseToken bool       `json:"isBaseToken"`
+	QuoteToken  QuoteToken `json:"quoteToken"`
+	V2          *V2        `json:"v2,omitempty"`
 }
 
 type Base struct {
@@ -62,10 +62,10 @@ type Base struct {
 	Symbol  string  `json:"symbol"`
 }
 
-type BaseTokenAddress struct {
+type BaseToken struct {
 	Address string `json:"address"`
-	ID      string `json:"id"`
 	PythID  string `json:"pythId"`
+	TokenID string `json:"tokenId"`
 }
 
 type Block struct {
@@ -78,10 +78,10 @@ type Block struct {
 	TransactionIndex int64  `json:"transactionIndex"`
 }
 
-type QuoteTokenAddress struct {
+type QuoteToken struct {
 	Address string `json:"address"`
-	ID      string `json:"id"`
 	PythID  string `json:"pythId"`
+	TokenID string `json:"tokenId"`
 }
 
 type V2 struct {
