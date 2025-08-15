@@ -56,7 +56,7 @@ type Base struct {
 	ChainID  int64  `json:"chainId"`
 	Decimals *int64 `json:"decimals,omitempty"`
 	// dex id
-	DexID   *int64  `json:"dexId,omitempty"`
+	DexID   string  `json:"dexId"`
 	Factory *string `json:"factory,omitempty"`
 	Name    string  `json:"name"`
 	Symbol  string  `json:"symbol"`
@@ -102,3 +102,5 @@ type Sync struct {
 	Reserve0 string `json:"reserve0"`
 	Reserve1 string `json:"reserve1"`
 }
+
+// end pair schema
