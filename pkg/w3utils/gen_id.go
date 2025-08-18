@@ -24,7 +24,7 @@ func GenerateID(prefix string, chainID int64, address ...string) string {
 	hashedString := hex.EncodeToString(hashedBytes)
 
 	// Prepend <prefix> to the hashed string
-	return hashedString
+	return "0x" + hashedString
 }
 
 func GenerateTokenID(chainID int64, pairAddress, tokenAddress string) string {
