@@ -26,7 +26,8 @@ type EvmConfigRPC struct {
 	LimitPerSecond int    `yaml:"limitPerSecond"`
 }
 
-// C returns current configuration
-func (c *Config) C() *Config {
-	return c
+type AsynqConfig struct {
+	Redis       string         `yaml:"redis"` // use redis config named default
+	Queues      map[string]int `yaml:"queues"`
+	Concurrency int            `yaml:"concurrency"`
 }

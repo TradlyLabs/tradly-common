@@ -6,6 +6,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/TradlyLabs/tradly-common/pkg/services/db"
@@ -93,7 +94,7 @@ func (m *Manager) ImportWallet(ctx context.Context, privKey *ecdsa.PrivateKey, p
 // GetWallet retrieves a wallet by address
 func (m *Manager) GetWallet(ctx context.Context, address string) (*Wallet, error) {
 	var wallet Wallet
-	if err := m.db.WithContext(ctx).Where("address = ?", address).First(&wallet).Error; err != nil {
+	if err := m.db.WithContext(ctx).Where("LOWER(address) = ?", strings.ToLower(address)).First(&wallet).Error; err != nil {
 		return nil, fmt.Errorf("failed to get wallet: %w", err)
 	}
 	return &wallet, nil

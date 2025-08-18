@@ -5,9 +5,17 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/TradlyLabs/tradly-common/pkg/runtime"
 	"github.com/TradlyLabs/tradly-common/pkg/wallet"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 )
+
+var defaultSrvWallet *SrvWallet
+
+func init() {
+	defaultSrvWallet = NewSrvWallet()
+	runtime.DefaultManager.Register("SrvWallet", defaultSrvWallet)
+}
 
 type SrvWallet struct {
 	walletManager *wallet.Manager
@@ -41,7 +49,6 @@ func (s *SrvWallet) Stop(ctx context.Context) error {
 	return nil
 }
 
-func (s *SrvWallet) Get(args ...interface{}) *wallet.Manager {
-	return s.walletManager
-
+func Get(args ...interface{}) *wallet.Manager {
+	return defaultSrvWallet.walletManager
 }

@@ -26,3 +26,7 @@ func WalletHandlePattern(typ walletHandleType) string {
 func (t automationCompatibleType) String() string {
 	return string(t)
 }
+
+const (
+	TYPE_TRADLY_EXECUTE_POLICY_ORDER = "tradly_execute_policy_order"
+)

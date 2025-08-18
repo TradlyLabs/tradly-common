@@ -9,16 +9,20 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
+var defaultSrvRPC *SrvRPC
+
+func init() {
+	defaultSrvRPC = NewSrvRPC()
+
+	runtime.DefaultManager.Register("SrvRPC", defaultSrvRPC)
+}
+
 type RPCManager interface {
 	GetRPC(chainID int64) (*ethclient.Client, error)
 }
 
 type SrvRPC struct {
 	rpcManager RPCManager
-}
-
-func init() {
-	runtime.DefaultManager.Register("SrvRPC", NewSrvRPC())
 }
 
 func NewSrvRPC() *SrvRPC {
@@ -37,6 +41,7 @@ func (s *SrvRPC) Stop(context.Context) error {
 	return nil
 }
 
-func (s *SrvRPC) GetRPC(chainID int64) (*ethclient.Client, error) {
-	return s.rpcManager.GetRPC(chainID)
+func Get(chainID int64) (*ethclient.Client, error) {
+	return defaultSrvRPC.rpcManager.GetRPC(chainID)
+
 }

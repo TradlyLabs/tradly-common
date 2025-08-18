@@ -33,6 +33,7 @@ type Config struct {
 	Postgres map[string]*Postgres    `yaml:"postgres"`
 	Redis    map[string]*RedisConfig `yaml:"redis"`
 	Evm      map[string]*EvmConfig   `yaml:"evm"`
+	Asynq    *AsynqConfig            `yaml:"asynq"`
 }
 
 type SrvConfig struct {

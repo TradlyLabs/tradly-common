@@ -24,6 +24,9 @@ type CliAsynq struct {
 	list    []*asynq.Client
 }
 
+// Client returns the asynq client by name.
+// If name is empty, it returns the default client.
+// Names comming from config file redis section.
 func C(args ...interface{}) *asynq.Client {
 	name := DEFAULT_NAME
 	if len(args) > 0 {
