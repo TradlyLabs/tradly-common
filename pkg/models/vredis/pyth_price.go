@@ -39,27 +39,28 @@ func (r *Pair) Marshal() ([]byte, error) {
 // A geographical coordinate
 type Pair struct {
 	// Pair address
-	Address   string    `json:"address"`
+	Address string `json:"address"`
+	// <appId>:<pairAddress>
+	AppPairID string    `json:"appPairId"`
 	Base      *Base     `json:"base,omitempty"`
 	BaseToken BaseToken `json:"baseToken"`
 	Block     *Block    `json:"block,omitempty"`
-	// pair_<chainId>:<pairAddress>
-	ID string `json:"id"`
 	// token0 is the base token
-	IsBaseToken bool       `json:"isBaseToken"`
-	QuoteToken  QuoteToken `json:"quoteToken"`
-	V2          *V2        `json:"v2,omitempty"`
+	IsBaseToken bool   `json:"isBaseToken"`
+	Order       *Order `json:"order,omitempty"`
+	// pair_<chainId>:<pairAddress>
+	PairID     string     `json:"pairId"`
+	QuoteToken QuoteToken `json:"quoteToken"`
+	V2         *V2        `json:"v2,omitempty"`
 }
 
 type Base struct {
 	// chain id
-	ChainID  int64  `json:"chainId"`
-	Decimals *int64 `json:"decimals,omitempty"`
-	// dex id
-	DexID   string  `json:"dexId"`
-	Factory *string `json:"factory,omitempty"`
-	Name    string  `json:"name"`
-	Symbol  string  `json:"symbol"`
+	ChainID  int64   `json:"chainId"`
+	Decimals *int64  `json:"decimals,omitempty"`
+	Factory  *string `json:"factory,omitempty"`
+	Name     string  `json:"name"`
+	Symbol   string  `json:"symbol"`
 }
 
 type BaseToken struct {
@@ -76,6 +77,12 @@ type Block struct {
 	Number           int64  `json:"number"`
 	Timestamp        int64  `json:"timestamp"`
 	TransactionIndex int64  `json:"transactionIndex"`
+}
+
+type Order struct {
+	AppID   string `json:"appId"`
+	DexID   string `json:"dexId"`
+	OrderID string `json:"orderId"`
 }
 
 type QuoteToken struct {

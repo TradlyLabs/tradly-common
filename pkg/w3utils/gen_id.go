@@ -3,6 +3,7 @@ package w3utils
 import (
 	"encoding/hex"
 	"fmt"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/crypto"
 )
@@ -12,9 +13,9 @@ import (
 // pairAddress: The pair address
 // tokenAddress: The token address
 // Returns the generated token ID string
-func GenerateID(prefix string, chainID int64, pairAddress, tokenAddress string) string {
+func GenerateID(prefix string, chainID int64, address ...string) string {
 	// Create the input string in the required format
-	input := fmt.Sprintf("%d:%s:%s", chainID, pairAddress, tokenAddress)
+	input := fmt.Sprintf("%s:%d:%s", prefix, chainID, strings.Join(address, ":"))
 
 	// Calculate Keccak-256 hash
 	hashedBytes := crypto.Keccak256Hash([]byte(input)).Bytes()
@@ -23,7 +24,7 @@ func GenerateID(prefix string, chainID int64, pairAddress, tokenAddress string) 
 	hashedString := hex.EncodeToString(hashedBytes)
 
 	// Prepend <prefix> to the hashed string
-	return prefix + hashedString
+	return hashedString
 }
 
 func GenerateTokenID(chainID int64, pairAddress, tokenAddress string) string {
