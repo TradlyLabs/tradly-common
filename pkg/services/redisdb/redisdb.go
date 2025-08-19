@@ -77,6 +77,10 @@ func (s *srvRedisDB) Start(ctx context.Context) error {
 		}
 		s.clients[key] = client
 		s.list = append(s.list, client)
+		if c.IsDefault {
+			s.clients[DEFAULT_NAME] = client
+			hasDefault = true
+		}
 	}
 	if !hasDefault && len(s.list) > 0 {
 		s.clients[DEFAULT_NAME] = s.list[0]

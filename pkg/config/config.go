@@ -9,9 +9,10 @@ type PostgresConfig struct {
 
 // RedisConfig stores Redis connection information
 type RedisConfig struct {
-	Address  string `yaml:"address"`
-	Password string `yaml:"password"`
-	DB       int    `yaml:"db"`
+	Address   string `yaml:"address"`
+	Password  string `yaml:"password"`
+	DB        int    `yaml:"db"`
+	IsDefault bool   `yaml:"isDefault"`
 }
 
 // EvmConfig stores EVM connection information
