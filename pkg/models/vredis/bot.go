@@ -15,6 +15,7 @@ type BotData struct {
 	AppID             string          `json:"appId"`
 	DexID             string          `json:"dexId"`
 	Payload           string          `json:"payload"`
+	PairAddress       common.Address  `json:"pairAddress"`
 	RouterAddress     common.Address  `json:"routerAddress"`
 	ReaderAddress     common.Address  `json:"readerAddress"`
 	BaseTokenAddress  common.Address  `json:"baseTokenAddress"`
