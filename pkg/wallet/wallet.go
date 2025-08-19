@@ -147,6 +147,9 @@ func (m *Manager) UnlockWallet(ctx context.Context, address, password string, du
 	// Import the keystore to keystore manager
 	account, err := m.ks.Import([]byte(wallet.Keystore), password, password)
 	if err != nil {
+		if err.Error() == "account already exists" {
+			return nil
+		}
 		return fmt.Errorf("failed to import keystore: %w", err)
 	}
 

@@ -22,3 +22,7 @@ type WalletUnlock struct {
 	ExpiresAt time.Time `json:"expires_at"`
 	CreatedAt time.Time `json:"created_at"`
 }
+
+func (m *WalletUnlock) TableName() string {
+	return "keeper.wallet_unlocks"
+}
