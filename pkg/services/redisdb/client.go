@@ -9,6 +9,7 @@ import (
 
 type Client interface {
 	HGet(ctx context.Context, key, field string) *redis.StringCmd
+	HGetAll(ctx context.Context, key string) *redis.MapStringStringCmd
 	HSet(ctx context.Context, key string, values ...interface{}) *redis.IntCmd
 	XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd
 	Publish(ctx context.Context, channel string, message interface{}) *redis.IntCmd

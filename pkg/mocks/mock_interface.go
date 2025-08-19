@@ -88,6 +88,20 @@ func (mr *MockRedisClientMockRecorder) HGet(ctx, key, field interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HGet", reflect.TypeOf((*MockRedisClient)(nil).HGet), ctx, key, field)
 }
 
+// HGetAll mocks base method.
+func (m *MockRedisClient) HGetAll(ctx context.Context, key string) *redis.MapStringStringCmd {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "HGetAll", ctx, key)
+	ret0, _ := ret[0].(*redis.MapStringStringCmd)
+	return ret0
+}
+
+// HGetAll indicates an expected call of HGetAll.
+func (mr *MockRedisClientMockRecorder) HGetAll(ctx, key interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HGetAll", reflect.TypeOf((*MockRedisClient)(nil).HGetAll), ctx, key)
+}
+
 // HSet mocks base method.
 func (m *MockRedisClient) HSet(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
 	m.ctrl.T.Helper()

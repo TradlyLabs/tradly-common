@@ -14,6 +14,11 @@ import (
 // tokenAddress: The token address
 // Returns the generated token ID string
 func GenerateID(prefix string, chainID int64, address ...string) string {
+	// make sure address is lowercase
+	for i, addr := range address {
+		address[i] = strings.ToLower(addr)
+	}
+
 	// Create the input string in the required format
 	input := fmt.Sprintf("%s:%d:%s", prefix, chainID, strings.Join(address, ":"))
 
