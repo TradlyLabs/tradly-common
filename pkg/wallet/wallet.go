@@ -6,6 +6,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"fmt"
+	"math/big"
 	"strings"
 	"time"
 
@@ -13,6 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
@@ -210,6 +212,18 @@ func (m *Manager) SignHash(ctx context.Context, address string, hash []byte) ([]
 	}
 
 	return signature, nil
+}
+
+func (m *Manager) SignTx(ctx context.Context, address string, tx *types.Transaction, chainID *big.Int) (*types.Transaction, error) {
+	addr := common.HexToAddress(address)
+	account := accounts.Account{Address: addr}
+
+	signedTx, err := m.ks.SignTx(account, tx, chainID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to sign tx: %w", err)
+	}
+
+	return signedTx, nil
 }
 
 // SignHashWithPassphrase signs a hash with the specified wallet and passphrase

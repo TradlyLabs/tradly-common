@@ -11,9 +11,12 @@ var (
 
 type BotData struct {
 	BotID             string          `json:"botId"`
+	ChainID           int64           `json:"ChainId"`
 	OrderID           string          `json:"orderId"`
 	AppID             string          `json:"appId"`
 	DexID             string          `json:"dexId"`
+	Nonce             int64           `json:"nonce"`
+	UserAddress       common.Address  `json:"userAddress"`
 	Payload           string          `json:"payload"`
 	PairAddress       common.Address  `json:"pairAddress"`
 	RouterAddress     common.Address  `json:"routerAddress"`

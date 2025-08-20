@@ -23,6 +23,8 @@ type SwapExecuteOrderPayload struct {
 	OrderID       [32]byte
 	AppID         [32]byte
 	DexID         [32]byte
+	PairID        [32]byte
+	AppPairID     [32]byte
 	UserAddress   common.Address
 	Nonce         *big.Int
 	TokenIn       common.Address
