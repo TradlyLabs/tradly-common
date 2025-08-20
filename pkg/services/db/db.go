@@ -101,6 +101,10 @@ func (s *SrvDB) Start(context.Context) error {
 		}
 		s.dbs[key] = dbInst
 		s.list = append(s.list, dbInst)
+		if c.IsDefault {
+			s.dbs[DEFAULT_NAME] = dbInst
+			hasDefault = true
+		}
 	}
 	if !hasDefault && len(s.list) > 0 {
 		s.dbs[DEFAULT_NAME] = s.list[0]

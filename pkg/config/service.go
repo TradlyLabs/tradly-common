@@ -24,9 +24,10 @@ func C() *Config {
 }
 
 type Postgres struct {
-	DSN      string   `yaml:"dsn"`
-	Sources  []string `yaml:"sources"`
-	Replicas []string `yaml:"replicas"`
+	DSN       string   `yaml:"dsn"`
+	Sources   []string `yaml:"sources"`
+	Replicas  []string `yaml:"replicas"`
+	IsDefault bool     `yaml:"isDefault"`
 }
 
 type Config struct {
