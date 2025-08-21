@@ -64,10 +64,11 @@ type Base struct {
 }
 
 type BaseToken struct {
-	Address  string `json:"address"`
-	Decimals int64  `json:"decimals"`
-	PythID   string `json:"pythId"`
-	TokenID  string `json:"tokenId"`
+	Address     string `json:"address"`
+	Decimals    int64  `json:"decimals"`
+	PythID      string `json:"pythId"`
+	TokenID     string `json:"tokenId"`
+	TotalSupply int64  `json:"totalSupply"`
 }
 
 type Block struct {
@@ -87,10 +88,11 @@ type Order struct {
 }
 
 type QuoteToken struct {
-	Address  string `json:"address"`
-	Decimals int64  `json:"decimals"`
-	PythID   string `json:"pythId"`
-	TokenID  string `json:"tokenId"`
+	Address     string `json:"address"`
+	Decimals    int64  `json:"decimals"`
+	PythID      string `json:"pythId"`
+	TokenID     string `json:"tokenId"`
+	TotalSupply int64  `json:"totalSupply"`
 }
 
 type V2 struct {
