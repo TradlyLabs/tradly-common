@@ -55,6 +55,7 @@ type Base struct {
 type BaseToken struct {
 	Address     string `json:"address"`
 	Decimals    int64  `json:"decimals"`
+	MaxSupply   int64  `json:"maxSupply"`
 	PairTokenID string `json:"pairTokenId"`
 	PythID      string `json:"pythId"`
 	TotalSupply int64  `json:"totalSupply"`
@@ -80,6 +81,7 @@ type Order struct {
 type QuoteToken struct {
 	Address     string `json:"address"`
 	Decimals    int64  `json:"decimals"`
+	MaxSupply   int64  `json:"maxSupply"`
 	PairTokenID string `json:"pairTokenId"`
 	PythID      string `json:"pythId"`
 	TotalSupply int64  `json:"totalSupply"`

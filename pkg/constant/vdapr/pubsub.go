@@ -8,6 +8,12 @@ var (
 		Topic:      "uniswap-v2-pairs",
 		Route:      "/uniswap-v2-pairs",
 	}
+	SUB_TOKENS = &common.Subscription{
+		PubsubName: "management",
+		Topic:      "tokens",
+		Route:      "/tokens",
+	}
+
 	SUB_PRICE_FEEDS = &common.Subscription{
 		PubsubName: "management",
 		Topic:      "price-feeds",

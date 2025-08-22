@@ -15,3 +15,18 @@ type UniswapV2PairEvent struct {
 	Type  UniswapV2PairEventType `json:"type"`
 	Pairs []*chain_data.Pair     `json:"pairs"`
 }
+
+type TokenEventType int
+
+const (
+	TOKEN_EVENT_SYNC TokenEventType = iota
+	TOKEN_EVENT_ADD
+	TOKEN_EVENT_REMOVE
+	TOKEN_EVENT_UPDATE
+	TOKEN_EVENT_MARK
+)
+
+type TokenEvent struct {
+	Type   TokenEventType      `json:"type"`
+	Tokens []*chain_data.Token `json:"tokens"`
+}
