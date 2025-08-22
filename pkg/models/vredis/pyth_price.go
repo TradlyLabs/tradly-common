@@ -71,6 +71,7 @@ type Block struct {
 }
 
 type Order struct {
+	Account string `json:"account"`
 	AppID   string `json:"appId"`
 	DexID   string `json:"dexId"`
 	OrderID string `json:"orderId"`
