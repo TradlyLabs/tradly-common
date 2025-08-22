@@ -26,17 +26,6 @@ type Price struct {
 
 // Pair schema start
 // A geographical coordinate
-func UnmarshalPair(data []byte) (Pair, error) {
-	var r Pair
-	err := json.Unmarshal(data, &r)
-	return r, err
-}
-
-func (r *Pair) Marshal() ([]byte, error) {
-	return json.Marshal(r)
-}
-
-// A geographical coordinate
 type Pair struct {
 	// Pair address
 	Address string `json:"address"`
@@ -66,8 +55,8 @@ type Base struct {
 type BaseToken struct {
 	Address     string `json:"address"`
 	Decimals    int64  `json:"decimals"`
+	PairTokenID string `json:"pairTokenId"`
 	PythID      string `json:"pythId"`
-	TokenID     string `json:"tokenId"`
 	TotalSupply int64  `json:"totalSupply"`
 }
 
@@ -90,8 +79,8 @@ type Order struct {
 type QuoteToken struct {
 	Address     string `json:"address"`
 	Decimals    int64  `json:"decimals"`
+	PairTokenID string `json:"pairTokenId"`
 	PythID      string `json:"pythId"`
-	TokenID     string `json:"tokenId"`
 	TotalSupply int64  `json:"totalSupply"`
 }
 

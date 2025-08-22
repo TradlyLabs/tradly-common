@@ -23,6 +23,8 @@ type Pair struct {
 	BaseTokenAddress string     `json:"baseTokenAddress" gorm:"column:base_token_address;type:char(42);not null"`
 	Token0ID         string     `json:"token0ID" gorm:"column:token0_id;type:char(66);not null"`
 	Token1ID         string     `json:"token1ID" gorm:"column:token1_id;type:char(66);not null"`
+	PairToken0ID     string     `json:"pairToken0ID" gorm:"column:pair_token0_id;type:char(66);not null"`
+	PairToken1ID     string     `json:"pairToken1ID" gorm:"column:pair_token1_id;type:char(66);not null"`
 	Token0Address    string     `json:"token0Address" gorm:"column:token0_address;type:char(42);not null"`
 	Token1Address    string     `json:"token1Address" gorm:"column:token1_address;type:char(42);not null"`
 	Token0Symbol     string     `json:"token0Symbol" gorm:"column:token0_symbol;type:varchar(10);not null;default:''"`
@@ -33,6 +35,9 @@ type Pair struct {
 	Token1Name       string     `json:"token1Name" gorm:"column:token1_name;type:text;not null;default:''"`
 	Token0Decimals   int32      `json:"token0Decimals" gorm:"column:token0_decimals;not null"`
 	Token1Decimals   int32      `json:"token1Decimals" gorm:"column:token1_decimals;not null"`
+	DexscreenerURL   string     `json:"dexscreenerURL" gorm:"column:dexscreener_url;type:text;not null;default:''"`
+	ListingTime      time.Time  `json:"listingTime" gorm:"column:listing_time;not null;default:''"`
+	Label            string     `json:"label" gorm:"column:label;type:varchar(50);not null;default:''"`
 
 	Disabled bool `json:"disabled" gorm:"column:disabled;not null;default:false"`
 }

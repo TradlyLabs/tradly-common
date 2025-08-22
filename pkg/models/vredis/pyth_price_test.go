@@ -34,9 +34,9 @@ func generateMockData() Pair {
 		Symbol:   "ETH",
 	}
 	basetoken := BaseToken{
-		Address: randomAddress(42),
-		PythID:  "0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f",
-		TokenID: randomId(),
+		Address:     randomAddress(42),
+		PythID:      "0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f",
+		PairTokenID: randomId(),
 	}
 	block := &Block{
 		From:             randomAddress(42),
@@ -52,9 +52,9 @@ func generateMockData() Pair {
 		OrderID: randomId(),
 	}
 	quotetoken := QuoteToken{
-		Address: randomAddress(42),
-		PythID:  randomAddress(32),
-		TokenID: "token2",
+		Address:     randomAddress(42),
+		PythID:      randomAddress(32),
+		PairTokenID: "token2",
 	}
 	swap := &Swap{
 		Amount0In:  "1000000000000000000", // 1 token with 18 decimals
