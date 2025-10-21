@@ -11,7 +11,7 @@ import (
 type Pair struct {
 	ID               string     `json:"id" gorm:"column:id;primaryKey"`
 	ChainID          int64      `json:"chainID" gorm:"column:chain_id;not null"`
-	DexID            *int32     `json:"dexID,omitempty" gorm:"column:dex_id"`
+	DexID            string     `json:"dexID,omitempty" gorm:"column:dex_id"`
 	PairAddress      string     `json:"pairAddress" gorm:"column:pair_address;type:char(42);not null"`
 	Symbol           string     `json:"symbol" gorm:"column:symbol;type:char(10);not null"`
 	Name             string     `json:"name" gorm:"column:name;type:varchar(50);not null"`

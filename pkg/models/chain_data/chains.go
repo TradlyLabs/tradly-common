@@ -15,6 +15,7 @@ type Chain struct {
 	CurrencySymbol    string    `json:"currencySymbol" gorm:"column:currency_symbol;type:varchar(50);not null"`
 	ExplorerURL       *string   `json:"explorerUrl" gorm:"column:explorer_url;type:text"`
 	UpdatedAt         time.Time `json:"updatedAt" gorm:"column:updated_at;not null;default:now()"`
+	ChainLogo         string    `json:"chainLogo" gorm:"column:chain_logo;type:text;not null"`
 }
 
 // TableName sets the table name for the Chain struct
