@@ -23,6 +23,8 @@ type BotData struct {
 	ReaderAddress     common.Address  `json:"readerAddress"`
 	BaseTokenAddress  common.Address  `json:"baseTokenAddress"`
 	QuoteTokenAddress common.Address  `json:"quoteTokenAddress"`
+	BasePairTokenID   string          `json:"basePairTokenId"`
+	QuotePairTokenID  string          `json:"quotePairTokenId"`
 	BaseAmount        decimal.Decimal `json:"baseAmount"`
 	QuoteAmount       decimal.Decimal `json:"quoteAmount"`
 }
