@@ -13,9 +13,10 @@ type Pair struct {
 	IsBaseToken bool   `json:"isBaseToken"`
 	Order       *Order `json:"order,omitempty"`
 	// pair_<chainId>:<pairAddress>
-	PairID     string     `json:"pairId"`
-	QuoteToken QuoteToken `json:"quoteToken"`
-	V2         *V2        `json:"v2,omitempty"`
+	PairID          string            `json:"pairId"`
+	QuoteToken      QuoteToken        `json:"quoteToken"`
+	V2              *V2               `json:"v2,omitempty"`
+	FeeDistribution []FeeDistribution `json:"feeDistribution,omitempty"`
 }
 
 type Base struct {
@@ -80,4 +81,10 @@ type Swap struct {
 type Sync struct {
 	Reserve0 string `json:"reserve0"`
 	Reserve1 string `json:"reserve1"`
+}
+
+type FeeDistribution struct {
+	LogIndex    int64  `json:"logIndex"`
+	TokenID     string `json:"tokenId"`
+	TokenAmount string `json:"tokenAmount"`
 }

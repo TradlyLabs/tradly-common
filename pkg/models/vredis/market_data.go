@@ -22,6 +22,7 @@ type TokenUSDPrice struct {
 	PairTokenID       string          `json:"pairTokenId"`
 	DexID             string          `json:"dexId"`
 	Price             decimal.Decimal `json:"price"`
+	MarketPrice       decimal.Decimal `json:"marketPrice"`
 	Timestamp         int64           `json:"timestamp"`
 	PairID            string          `json:"pairId"`
 	BaseTokenAddress  string          `json:"baseTokenAddress"`
