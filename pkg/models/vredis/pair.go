@@ -87,4 +87,5 @@ type FeeDistribution struct {
 	LogIndex    int64  `json:"logIndex"`
 	TokenID     string `json:"tokenId"`
 	TokenAmount string `json:"tokenAmount"`
+	Recipient   string `json:"recipient"`
 }
