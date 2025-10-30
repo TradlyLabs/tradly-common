@@ -22,6 +22,7 @@ type Token struct {
 	Extensions        string          `gorm:"column:extensions;type:text;not null;default:''"`
 	IsMark            bool            `gorm:"column:is_mark;not null;default:false"`
 	RecentListingTime time.Time       `gorm:"column:recent_listing_time;not null;"`
+	CirculatingSupply decimal.Decimal `gorm:"column:circulating_supply;type:numeric(256,18);not null"`
 	TotalSupply       decimal.Decimal `gorm:"column:total_supply;type:numeric(256,18);not null"`
 	MaxSupply         decimal.Decimal `gorm:"column:max_supply;type:numeric(256,18);not null"`
 }
