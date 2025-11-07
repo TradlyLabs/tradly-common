@@ -1,0 +1,30 @@
+runmode: debug
+postgres:
+  temore:
+    dsn: "host=localhost user=temore password=temore2025 dbname=temore port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+  tradly:
+    dsn: "host=localhost user=tradly password=tradly2025 dbname=tradly port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+    isDefault: true
+redis:
+  temore:
+    address: "localhost:6379"
+    password: ""
+    db: 0
+    isDefault: true
+evm:
+  bsc:
+    chainId: 56
+    rpc:
+      - url: "wss://bsc-rpc.publicnode.com"
+        limitPerSecond: 50
+      - url: "https://bsc-rpc.publicnode.com"
+        limitPerSecond: 50
+  bscTestnet:
+    chainId: 97
+    startBlockNumber: 70300241 # default 0 for the latest block number
+    rpc:
+      - url: "https://bsc-testnet-rpc.publicnode.com"
+  baseSepolia:
+    chainId: 84532
+    rpc:
+      - "https://sepolia.base.org"

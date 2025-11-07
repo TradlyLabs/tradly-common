@@ -2,9 +2,10 @@ package config
 
 // PostgresConfig stores PostgreSQL connection information
 type PostgresConfig struct {
-	DSN      string   `yaml:"dsn"`
-	Sources  []string `yaml:"sources"`
-	Replicas []string `yaml:"replicas"`
+	DSN       string   `yaml:"dsn"`
+	Sources   []string `yaml:"sources"`
+	Replicas  []string `yaml:"replicas"`
+	IsDefault bool     `yaml:"isDefault"`
 }
 
 // RedisConfig stores Redis connection information
