@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/TradlyLabs/tradly-common/pkg/runtime"
+	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 )
 
@@ -25,10 +26,10 @@ func C() *Config {
 }
 
 type Config struct {
-	Postgres map[string]*PostgresConfig `yaml:"postgres"`
-	Redis    map[string]*RedisConfig    `yaml:"redis"`
-	Evm      map[string]*EvmConfig      `yaml:"evm"`
-	Asynq    *AsynqConfig               `yaml:"asynq"`
+	Postgres map[string]*PostgresConfig `mapstructure:"postgres" yaml:"postgres"`
+	Redis    map[string]*RedisConfig    `mapstructure:"redis" yaml:"redis"`
+	Evm      map[string]*EvmConfig      `mapstructure:"evm" yaml:"evm"`
+	Asynq    *AsynqConfig               `mapstructure:"asynq" yaml:"asynq"`
 }
 
 type SrvConfig struct {
@@ -57,9 +58,12 @@ func (s *SrvConfig) Start(context.Context) error {
 		}
 	}
 
-	// Unmarshal config into struct
+	// Unmarshal config into struct with proper configuration
 	var config Config
-	if err := v.Unmarshal(&config); err != nil {
+	if err := v.Unmarshal(&config, viper.DecodeHook(mapstructure.ComposeDecodeHookFunc(
+		mapstructure.StringToTimeDurationHookFunc(),
+		mapstructure.StringToSliceHookFunc(","),
+	))); err != nil {
 		return fmt.Errorf("failed to parse config: %w", err)
 	}
 

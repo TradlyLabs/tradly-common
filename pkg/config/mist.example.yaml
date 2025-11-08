@@ -24,7 +24,9 @@ evm:
     startBlockNumber: 70300241 # default 0 for the latest block number
     rpc:
       - url: "https://bsc-testnet-rpc.publicnode.com"
+        limitPerSecond: 50
   baseSepolia:
     chainId: 84532
     rpc:
-      - "https://sepolia.base.org"
+      - url: "https://sepolia.base.org"
+        limitPerSecond: 50
