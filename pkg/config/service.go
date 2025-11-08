@@ -47,7 +47,7 @@ func (s *SrvConfig) Start(context.Context) error {
 
 	// Configure viper to read from environment variables
 	v.AutomaticEnv()
-	v.SetEnvPrefix("TRADLY")                                     // All env vars will be prefixed with TRADLY_
+	// v.SetEnvPrefix("TRADLY")                                     // All env vars will be prefixed with TRADLY_
 	v.SetEnvKeyReplacer(strings.NewReplacer("-", "_", ".", "_")) // Replace dots and dashes with underscores
 
 	// Read config file if it exists

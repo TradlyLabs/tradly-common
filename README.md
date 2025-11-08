@@ -8,72 +8,72 @@ The application can be configured using both YAML configuration files and enviro
 
 ### Environment Variables
 
-All environment variables are prefixed with `TRADLY_`.
+All environment variables are prefixed with ``.
 
 #### PostgreSQL Configuration
 
 You can configure PostgreSQL connections using the following environment variable pattern:
 ```
-TRADLY_POSTGRES_[NAME]_DSN=...
-TRADLY_POSTGRES_[NAME]_SOURCES=...
-TRADLY_POSTGRES_[NAME]_REPLICAS=...
-TRADLY_POSTGRES_[NAME]_ISDEFAULT=true|false
+POSTGRES_[NAME]_DSN=...
+POSTGRES_[NAME]_SOURCES=...
+POSTGRES_[NAME]_REPLICAS=...
+POSTGRES_[NAME]_ISDEFAULT=true|false
 ```
 
 Example:
 ```bash
-TRADLY_POSTGRES_TRADLY_DSN="host=localhost user=tradly password=tradly2025 dbname=tradly port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-TRADLY_POSTGRES_TRADLY_ISDEFAULT=true
+POSTGRES_DSN="host=localhost user=tradly password=tradly2025 dbname=tradly port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+POSTGRES_ISDEFAULT=true
 ```
 
 #### Redis Configuration
 
 You can configure Redis connections using the following environment variable pattern:
 ```
-TRADLY_REDIS_[NAME]_ADDRESS=...
-TRADLY_REDIS_[NAME]_PASSWORD=...
-TRADLY_REDIS_[NAME]_DB=...
-TRADLY_REDIS_[NAME]_ISDEFAULT=true|false
+REDIS_[NAME]_ADDRESS=...
+REDIS_[NAME]_PASSWORD=...
+REDIS_[NAME]_DB=...
+REDIS_[NAME]_ISDEFAULT=true|false
 ```
 
 Example:
 ```bash
-TRADLY_REDIS_TEMORE_ADDRESS="localhost:6379"
-TRADLY_REDIS_TEMORE_PASSWORD=""
-TRADLY_REDIS_TEMORE_DB=0
-TRADLY_REDIS_TEMORE_ISDEFAULT=true
+REDIS_TEMORE_ADDRESS="localhost:6379"
+REDIS_TEMORE_PASSWORD=""
+REDIS_TEMORE_DB=0
+REDIS_TEMORE_ISDEFAULT=true
 ```
 
 #### EVM Configuration
 
 You can configure EVM chains using the following environment variable pattern:
 ```
-TRADLY_EVM_[NAME]_CHAINID=...
-TRADLY_EVM_[NAME]_STARTBLOCKNUMBER=...
-TRADLY_EVM_[NAME]_RPC=...
+EVM_[NAME]_CHAINID=...
+EVM_[NAME]_STARTBLOCKNUMBER=...
+EVM_[NAME]_RPC=...
 ```
 
 Example:
 ```bash
-TRADLY_EVM_BSC_CHAINID=56
-TRADLY_EVM_BSC_RPC_0_URL="wss://bsc-rpc.publicnode.com"
-TRADLY_EVM_BSC_RPC_0_LIMITPERSECOND=50
+EVM_BSC_CHAINID=56
+EVM_BSC_RPC_0_URL="wss://bsc-rpc.publicnode.com"
+EVM_BSC_RPC_0_LIMITPERSECOND=50
 ```
 
 #### Asynq Configuration
 
 You can configure Asynq using the following environment variables:
 ```
-TRADLY_ASYNQ_REDIS=...
-TRADLY_ASYNQ_CONCURRENCY=...
-TRADLY_ASYNQ_QUEUES_[NAME]=...
+ASYNQ_REDIS=...
+ASYNQ_CONCURRENCY=...
+ASYNQ_QUEUES_[NAME]=...
 ```
 
 Example:
 ```bash
-TRADLY_ASYNQ_REDIS=temore
-TRADLY_ASYNQ_CONCURRENCY=10
-TRADLY_ASYNQ_QUEUES_DEFAULT=10
+ASYNQ_REDIS=temore
+ASYNQ_CONCURRENCY=10
+ASYNQ_QUEUES_DEFAULT=10
 ```
 
 ### YAML Configuration File
