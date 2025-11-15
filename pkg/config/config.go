@@ -11,6 +11,8 @@ type PostgresConfig struct {
 // RedisConfig stores Redis connection information
 type RedisConfig struct {
 	Address   string `mapstructure:"address" yaml:"address"`
+	Host      string `mapstructure:"host" yaml:"host"`
+	Port      int    `mapstructure:"port" yaml:"port"`
 	Password  string `mapstructure:"password" yaml:"password"`
 	DB        int    `mapstructure:"db" yaml:"db"`
 	IsDefault bool   `mapstructure:"isDefault" yaml:"isDefault"`

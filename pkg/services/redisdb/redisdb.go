@@ -2,6 +2,7 @@ package redisdb
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/TradlyLabs/tradly-common/pkg/config"
 	"github.com/TradlyLabs/tradly-common/pkg/runtime"
@@ -67,8 +68,12 @@ func (s *srvRedisDB) Start(ctx context.Context) error {
 
 	hasDefault := false
 	for key, c := range conf.Redis {
+		address := c.Address
+		if address == "" {
+			address = fmt.Sprintf("%s:%d", c.Host, c.Port)
+		}
 		client := redis.NewClient(&redis.Options{
-			Addr:     c.Address,
+			Addr:     address,
 			Password: c.Password,
 			DB:       c.DB,
 		})
