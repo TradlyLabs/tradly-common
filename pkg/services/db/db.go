@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"sync"
 	"time"
 
 	"github.com/TradlyLabs/tradly-common/pkg/config"
@@ -32,6 +33,8 @@ func Get(args ...interface{}) *gorm.DB {
 	if len(args) > 0 {
 		switch v := args[0].(type) {
 		case string:
+			defaultSrvDB.mu.Lock()
+			defer defaultSrvDB.mu.Unlock()
 			db, ok := defaultSrvDB.dbs[v]
 			if ok {
 				return db
@@ -41,6 +44,8 @@ func Get(args ...interface{}) *gorm.DB {
 			panic("database name must be string")
 		}
 	}
+	defaultSrvDB.mu.Lock()
+	defer defaultSrvDB.mu.Unlock()
 	db, ok := defaultSrvDB.dbs[DEFAULT_NAME]
 	if ok {
 		return db
@@ -50,6 +55,7 @@ func Get(args ...interface{}) *gorm.DB {
 
 type SrvDB struct {
 	dbs  map[string]*gorm.DB
+	mu   sync.Mutex
 	list []*gorm.DB
 }
 
@@ -59,6 +65,8 @@ func (s *SrvDB) Start(context.Context) error {
 		return errors.New("no postgres config")
 	}
 
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	hasDefault := false
 	for key, c := range conf.Postgres {
 		if key == DEFAULT_NAME {
@@ -109,10 +117,31 @@ func (s *SrvDB) Start(context.Context) error {
 	if !hasDefault && len(s.list) > 0 {
 		s.dbs[DEFAULT_NAME] = s.list[0]
 	}
+	if err := s.autoMigrate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SrvDB) autoMigrate() error {
+	migrateLock.Lock()
+	defer migrateLock.Unlock()
+	for dbName, d := range s.dbs {
+		if d != nil {
+			if len(toMigrate[dbName]) > 0 {
+				err := d.AutoMigrate(toMigrate[dbName]...)
+				if err != nil {
+					return err
+				}
+			}
+		}
+	}
 	return nil
 }
 
 func (s *SrvDB) Stop(ctx context.Context) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	var errors []error
 	for _, d := range s.list {
 		if d != nil {

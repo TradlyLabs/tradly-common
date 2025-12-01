@@ -62,6 +62,14 @@ func (s *srvRedisDB) GetClient(name string) (Client, bool) {
 	return db, ok
 }
 
+func GetRaw(args ...interface{}) *redis.Client {
+	db, ok := defaultSrvRedisDB.GetClient(DEFAULT_NAME)
+	if ok {
+		return db.(*redis.Client)
+	}
+	panic("no database")
+}
+
 // Start start Redis service
 func (s *srvRedisDB) Start(ctx context.Context) error {
 	conf := config.C()
